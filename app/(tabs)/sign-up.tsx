@@ -32,9 +32,11 @@ export default function SignUpScreen() {
       }}
     >
       <Image
-        source="https://logos-world.net/wp-content/uploads/2020/09/MasterCard-Logo-1979-1990.png"
-        style={{ width: 200, height: 120, resizeMode: "contain" }}
+        source={require("../../assets/images/logo.png")}
+        style={{ width: 100, height: 100, resizeMode: "contain" }}
       />
+
+      <Text style={{ fontSize: 32, fontWeight: "bold" }}>Parking Spotter</Text>
 
       {step === 1 && (
         <View style={styles.inputContainer}>
@@ -46,7 +48,15 @@ export default function SignUpScreen() {
             secureTextEntry
           />
           <RippleButton title="Next" onPress={() => setStep(2)} />
-          <Link href="/">
+          <Link
+            style={{
+              color: "blue",
+              textDecorationLine: "underline",
+              fontSize: 18,
+              textAlign: "center",
+            }}
+            href="/"
+          >
             Do you have an account already? Click here to sign in
           </Link>
         </View>

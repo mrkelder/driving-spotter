@@ -27,9 +27,11 @@ export default function LoginScreen() {
       }}
     >
       <Image
-        source="https://logos-world.net/wp-content/uploads/2020/09/MasterCard-Logo-1979-1990.png"
-        style={{ width: 200, height: 120, resizeMode: "contain" }}
+        source={require("../../assets/images/logo.png")}
+        style={{ width: 100, height: 100, resizeMode: "contain" }}
       />
+
+      <Text style={{ fontSize: 32, fontWeight: "bold" }}>Parking Spotter</Text>
 
       <View style={styles.inputContainer}>
         <Input
@@ -48,7 +50,15 @@ export default function LoginScreen() {
       </View>
 
       <RippleButton title="Sign In" onPress={() => {}} />
-      <Link style={{ marginTop: 24 }} href="/sign-up">
+      <Link
+        style={{
+          color: "blue",
+          textDecorationLine: "underline",
+          fontSize: 18,
+          textAlign: "center",
+        }}
+        href="/sign-up"
+      >
         Don't have an account? Register here
       </Link>
     </View>
