@@ -18,6 +18,7 @@ export default function LoginScreen() {
 
   const sendLoginRequest = async () => {
     // Send the login request here
+    console.log(1231232131);
     const response = await fetch(
       "https://bb96-137-122-64-210.ngrok-free.app/api/v1/user/list",
       {
