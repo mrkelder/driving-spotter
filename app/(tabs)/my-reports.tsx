@@ -23,9 +23,10 @@ import { Report } from "@/src/interfaces/Report";
 import { mockReports } from "@/src/mockData/reports"; // Import mock data
 import { createContext, useContext } from "react";
 import { UserContext } from "../context/UserContext";
+import { useReports } from "../context/ReportsContext";
 
 export default function MyReportsScreen() {
-  const [reports, setReports] = useState<Report[]>(mockReports); // Use mock data
+  const { reports } = useReports();
   const router = useRouter();
   const userId = useContext(UserContext).userId; // Use UserContext
 

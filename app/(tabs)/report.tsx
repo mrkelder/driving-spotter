@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import {
   StyleSheet,
   Platform,
@@ -20,6 +20,9 @@ import * as Location from "expo-location";
 import { CameraView, CameraType, useCameraPermissions } from "expo-camera";
 import { AntDesign, Ionicons } from "@expo/vector-icons";
 import CustomPicker from "@/components/CustomPicker";
+import { useReports } from "../context/ReportsContext";
+import { Report } from "@/src/interfaces/Report";
+import { UserContext } from "../context/UserContext";
 
 export default function ReportScreen() {
   const [location, setLocation] = useState<Location.LocationObject | null>(
@@ -37,6 +40,8 @@ export default function ReportScreen() {
   const [violation, setViolation] = useState("");
   const [description, setDescription] = useState("");
   const router = useRouter();
+  const { addReport } = useReports();
+  const { userId } = useContext(UserContext); // Assuming you have a user context
 
   useEffect(() => {
     async function getCurrentLocation() {
@@ -109,6 +114,18 @@ export default function ReportScreen() {
     }
   };
   const submitReport = async () => {
+    const newReport = {
+      id: Date.now(),
+      userId: userId ?? 0,
+      violationDescription: description,
+      location: locationAddress,
+      datetime: new Date().toISOString(),
+      licensePlate: "",
+      evidenceImg: photo2,
+      licensePlateImg: photo1,
+      licensePlateText: "",
+    } as Report;
+    addReport(newReport);
     router.push("/my-reports");
   };
 
