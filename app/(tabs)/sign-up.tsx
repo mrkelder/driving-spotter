@@ -46,6 +46,9 @@ export default function LoginScreen() {
             secureTextEntry
           />
           <RippleButton title="Next" onPress={() => setStep(2)} />
+          <Link href="/">
+            Do you have an account already? Click here to sign in
+          </Link>
         </View>
       )}
 
@@ -77,12 +80,9 @@ export default function LoginScreen() {
             value={phoneNumber}
             onChangeText={setPhoneNumber}
           />
-          <RippleButton title="Sign In" onPress={() => {}} />
+          <RippleButton title="Sign Up" onPress={() => {}} />
         </View>
       )}
-      <Link href="/">
-        Do you have an account already? Click here to sign in
-      </Link>
     </View>
   );
 }
