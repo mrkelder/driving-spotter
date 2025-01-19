@@ -13,7 +13,35 @@ export default function LoginScreen() {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState(""); // Added state for email
+  const [shouldDisplayError, setShouldDisplayError] = useState(false); // Added state for error display
   const router = useRouter();
+
+  const sendLoginRequest = async () => {
+    // Send the login request here
+    const response = await fetch(
+      "https://bb96-137-122-64-210.ngrok-free.app/api/v1/user/list",
+      {
+        method: "POST",
+        body: JSON.stringify({ email, password }),
+      }
+    );
+
+    const {
+      data: { users },
+    } = (await response.json()) as {
+      data: { users: { email: string; password: string }[] };
+    };
+
+    const user = users.find(
+      (user) => user.email === email && user.password === password
+    );
+
+    if (user) {
+      router.push("/my-reports");
+    } else {
+      setShouldDisplayError(true);
+    }
+  };
 
   return (
     <View
@@ -49,12 +77,12 @@ export default function LoginScreen() {
         />
       </View>
 
-      <RippleButton
-        title="Sign In"
-        onPress={() => {
-          router.push("/my-reports");
-        }}
-      />
+      <RippleButton title="Sign In" onPress={sendLoginRequest} />
+      {shouldDisplayError && (
+        <Text style={{ color: "red", marginTop: 8 }}>
+          Invalid email or password. Please try again.
+        </Text>
+      )}
       <Link
         style={{
           color: "blue",
