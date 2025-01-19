@@ -1,4 +1,6 @@
-# Welcome to your Expo app 👋
+# Welcome to Driving Spotter 👋
+
+This was created for uOttaHack 7. Here is the link to the repository containing the backend: https://github.com/zahinabrer5/driving-spotter-backend.
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
