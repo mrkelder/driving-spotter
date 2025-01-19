@@ -8,6 +8,7 @@ import { ThemedView } from "@/components/ThemedView";
 import Input from "@/components/Input";
 import RippleButton from "@/components/RippleButton";
 import { Link, useRouter } from "expo-router";
+import axios from "axios";
 
 export default function LoginScreen() {
   const [login, setLogin] = useState("");
@@ -18,22 +19,15 @@ export default function LoginScreen() {
 
   const sendLoginRequest = async () => {
     // Send the login request here
-    console.log(1231232131);
-    const response = await fetch(
-      "https://bb96-137-122-64-210.ngrok-free.app/api/v1/user/list",
-      {
-        method: "POST",
-        body: JSON.stringify({ email, password }),
-      }
-    );
-
-    const {
-      data: { users },
-    } = (await response.json()) as {
+    const response = (await axios.get(
+      "https://bb96-137-122-64-210.ngrok-free.app/api/v1/user/list"
+    )) as {
       data: { users: { email: string; password: string }[] };
     };
 
-    const user = users.find(
+    console.log(response);
+
+    const user = response.data.users.find(
       (user) => user.email === email && user.password === password
     );
 
