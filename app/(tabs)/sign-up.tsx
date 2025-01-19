@@ -63,6 +63,7 @@ export default function LoginScreen() {
           />
           <Input
             label="Driver's License"
+            placeholder="A0000-00000-00000"
             value={driversLicense}
             onChangeText={setDriversLicense}
           />
