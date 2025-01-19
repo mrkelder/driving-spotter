@@ -49,7 +49,12 @@ export default function LoginScreen() {
         />
       </View>
 
-      <RippleButton title="Sign In" onPress={() => {}} />
+      <RippleButton
+        title="Sign In"
+        onPress={() => {
+          router.push("/my-reports");
+        }}
+      />
       <Link
         style={{
           color: "blue",
