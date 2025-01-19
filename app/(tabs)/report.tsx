@@ -36,6 +36,7 @@ export default function ReportScreen() {
   const [photo2, setPhoto2] = useState("");
   const [violation, setViolation] = useState("");
   const [description, setDescription] = useState("");
+  const router = useRouter();
 
   useEffect(() => {
     async function getCurrentLocation() {
@@ -106,6 +107,9 @@ export default function ReportScreen() {
       setPhoto2(takedPhoto?.base64 ?? "");
       setStep(step + 1);
     }
+  };
+  const submitReport = async () => {
+    router.push("/my-reports");
   };
 
   return (
@@ -179,7 +183,7 @@ export default function ReportScreen() {
             value={description}
             onChangeText={setDescription}
           />
-          <RippleButton title="Submit Report" onPress={() => {}} />
+          <RippleButton title="Submit Report" onPress={submitReport} />
         </View>
       )}
 
