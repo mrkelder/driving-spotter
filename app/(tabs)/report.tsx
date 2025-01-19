@@ -1,5 +1,12 @@
 import { useEffect, useState } from "react";
-import { StyleSheet, Platform, View, Text, TextInput } from "react-native";
+import {
+  StyleSheet,
+  Platform,
+  View,
+  Text,
+  TextInput,
+  Button,
+} from "react-native";
 import { Image } from "expo-image";
 import { HelloWave } from "@/components/HelloWave";
 import ParallaxScrollView from "@/components/ParallaxScrollView";
@@ -9,13 +16,15 @@ import Input from "@/components/Input";
 import RippleButton from "@/components/RippleButton";
 import { Link, useRouter } from "expo-router";
 import * as Location from "expo-location";
+import { CameraView, CameraType, useCameraPermissions } from "expo-camera";
 
 export default function ReportScreen() {
   const [location, setLocation] = useState<Location.LocationObject | null>(
     null
   );
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
-  const [locationAddress, setLocationAddress] = useState<string>("");
+  const [locationAddress, setLocationAddress] = useState("loading...");
+  const [permission, requestPermission] = useCameraPermissions();
 
   useEffect(() => {
     async function getCurrentLocation() {
@@ -30,6 +39,7 @@ export default function ReportScreen() {
     }
 
     getCurrentLocation();
+    requestPermission();
   }, []);
 
   useEffect(() => {
@@ -76,6 +86,15 @@ export default function ReportScreen() {
       <Text style={{ fontSize: 18, fontWeight: "bold" }}>
         Your location is {locationAddress}
       </Text>
+
+      {permission?.granted ? (
+        <CameraView style={{ width: 300, height: 300 }} />
+      ) : (
+        <RippleButton
+          title="Please grant the permission to use camera"
+          onPress={requestPermission}
+        ></RippleButton>
+      )}
     </View>
   );
 }
