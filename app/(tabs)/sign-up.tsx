@@ -8,6 +8,7 @@ import { ThemedView } from "@/components/ThemedView";
 import Input from "@/components/Input";
 import RippleButton from "@/components/RippleButton";
 import { Link, useRouter } from "expo-router";
+import axios from "axios";
 
 export default function SignUpScreen() {
   const [password, setPassword] = useState("");
@@ -19,6 +20,22 @@ export default function SignUpScreen() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [step, setStep] = useState(1);
   const router = useRouter();
+
+  const signUpRequest = async () => {
+    const { data } = await axios.post("/api/auth/signup", {
+      firstName,
+      lastName,
+      email,
+      driversLicense,
+      address: homeAddress,
+      password,
+      phoneNumber,
+    });
+
+    if (data) {
+      router.push("/my-reports");
+    }
+  };
 
   return (
     <View
@@ -90,7 +107,7 @@ export default function SignUpScreen() {
             value={phoneNumber}
             onChangeText={setPhoneNumber}
           />
-          <RippleButton title="Sign Up" onPress={() => {}} />
+          <RippleButton title="Sign Up" onPress={signUpRequest} />
         </View>
       )}
     </View>
