@@ -19,22 +19,31 @@ export default function LoginScreen() {
 
   const sendLoginRequest = async () => {
     // Send the login request here
-    const response = (await axios.get(
-      "https://bb96-137-122-64-210.ngrok-free.app/api/v1/user/list"
-    )) as {
-      data: { users: { email: string; password: string }[] };
-    };
+    try {
+      setShouldDisplayError(false);
+      const { data } = await axios.get(
+        "https://bb96-137-122-64-210.ngrok-free.app/api/v1/user/list"
+      );
 
-    console.log(response);
+      const user = data.data.users.find(
+        (user: any) => user.email === email && user.password === password
+      );
 
-    const user = response.data.users.find(
-      (user) => user.email === email && user.password === password
-    );
+      console.log(
+        data.data.users.map((i: any) => ({
+          email: i.email,
+          password: i.password,
+        }))
+      );
 
-    if (user) {
-      router.push("/my-reports");
-    } else {
-      setShouldDisplayError(true);
+      if (user) {
+        router.push("/my-reports");
+      } else {
+        setShouldDisplayError(true);
+      }
+    } catch (error) {
+      console.error(error);
+      setShouldDisplayError(false);
     }
   };
 
