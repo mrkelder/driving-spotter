@@ -120,11 +120,12 @@ export default function ReportScreen() {
       violationDescription: description,
       location: locationAddress,
       datetime: new Date().toISOString(),
-      licensePlate: "",
-      evidenceImg: photo2,
-      licensePlateImg: photo1,
-      licensePlateText: "",
+      licensePlate: "XGR9215",
+      evidenceImg: `data:image/png;base64,${photo2}`,
+      licensePlateImg: `data:image/png;base64,${photo1}`,
+      licensePlateText: "XGR9215",
     } as Report;
+    console.log(photo1);
     addReport(newReport);
     router.push("/my-reports");
   };
