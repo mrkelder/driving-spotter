@@ -33,14 +33,14 @@ export default function LoginScreen() {
 
       <View style={styles.inputContainer}>
         <Input
-          placeholder="Email"
+          label="Email"
           value={email}
           onChangeText={setEmail} // Added email input
         />
       </View>
       <View style={styles.inputContainer}>
         <Input
-          placeholder="Password"
+          label="Password"
           value={password}
           onChangeText={setPassword} // Added password input
           secureTextEntry // To hide the password

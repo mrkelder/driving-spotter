@@ -37,45 +37,45 @@ export default function LoginScreen() {
 
       <View style={styles.inputContainer}>
         <Input
-          placeholder="First Name"
+          label="First Name"
           value={firstName}
           onChangeText={setFirstName} // Added first name input
         />
       </View>
       <View style={styles.inputContainer}>
         <Input
-          placeholder="Last Name"
+          label="Last Name"
           value={lastName}
           onChangeText={setLastName} // Added last name input
         />
       </View>
       <View style={styles.inputContainer}>
         <Input
-          placeholder="Driver's License"
+          label="Driver's License"
           value={driversLicense}
           onChangeText={setDriversLicense} // Added driver's license input
         />
       </View>
       <View style={styles.inputContainer}>
         <Input
-          placeholder="Home Address"
+          label="Home Address"
           value={homeAddress}
           onChangeText={setHomeAddress} // Added home address input
         />
       </View>
       <View style={styles.inputContainer}>
         <Input
-          placeholder="Phone Number"
+          label="Phone Number"
           value={phoneNumber}
           onChangeText={setPhoneNumber} // Added phone number input
         />
       </View>
       <View style={styles.inputContainer}>
-        <Input placeholder="Email" value={email} onChangeText={setEmail} />
+        <Input label="Email" value={email} onChangeText={setEmail} />
       </View>
       <View style={styles.inputContainer}>
         <Input
-          placeholder="Password"
+          label="Password"
           value={password}
           onChangeText={setPassword}
           secureTextEntry
