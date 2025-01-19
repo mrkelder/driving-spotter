@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { StyleSheet, Platform, View, Text, TextInput } from "react-native";
 import { Image } from "expo-image";
 import { HelloWave } from "@/components/HelloWave";
@@ -9,6 +9,7 @@ import Input from "@/components/Input";
 import RippleButton from "@/components/RippleButton";
 import { Link, useRouter } from "expo-router";
 import axios from "axios";
+import { UserContext } from "@/app/context/UserContext";
 
 export default function SignUpScreen() {
   const [password, setPassword] = useState("");
@@ -20,6 +21,7 @@ export default function SignUpScreen() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [step, setStep] = useState(1);
   const router = useRouter();
+  const { setUserContextId } = useContext(UserContext);
 
   const signUpRequest = async () => {
     const { data } = await axios.post("/api/auth/signup", {
@@ -33,6 +35,7 @@ export default function SignUpScreen() {
     });
 
     if (data) {
+      setUserContextId(data.users[0].id); // Set user context ID
       router.push("/my-reports");
     }
   };

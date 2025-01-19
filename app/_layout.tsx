@@ -12,6 +12,7 @@ import "react-native-reanimated";
 
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { Text } from "react-native";
+import { UserProvider } from "./context/UserContext";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -33,11 +34,13 @@ export default function RootLayout() {
   }
 
   return (
-    <Stack screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="index" />
-      <Stack.Screen name="(tabs)" />
-      <Stack.Screen name="+not-found" options={{ headerShown: false }} />
-      <Stack.Screen name="*" options={{ headerShown: true }} />
-    </Stack>
+    <UserProvider>
+      <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="index" />
+        <Stack.Screen name="(tabs)" />
+        <Stack.Screen name="+not-found" options={{ headerShown: false }} />
+        <Stack.Screen name="*" options={{ headerShown: true }} />
+      </Stack>
+    </UserProvider>
   );
 }

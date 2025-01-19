@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { StyleSheet, Platform, View, Text, TextInput } from "react-native";
 import { Image } from "expo-image";
 import { HelloWave } from "@/components/HelloWave";
@@ -9,6 +9,7 @@ import Input from "@/components/Input";
 import RippleButton from "@/components/RippleButton";
 import { Link, useRouter } from "expo-router";
 import axios from "axios";
+import { UserContext } from "@/app/context/UserContext";
 
 export default function LoginScreen() {
   const [login, setLogin] = useState("");
@@ -16,6 +17,7 @@ export default function LoginScreen() {
   const [email, setEmail] = useState(""); // Added state for email
   const [shouldDisplayError, setShouldDisplayError] = useState(false); // Added state for error display
   const router = useRouter();
+  const { setUserContextId } = useContext(UserContext);
 
   const sendLoginRequest = async () => {
     // Send the login request here
@@ -37,6 +39,7 @@ export default function LoginScreen() {
       );
 
       if (user) {
+        setUserContextId(user.id); // Set user context ID
         router.push("/my-reports");
       } else {
         setShouldDisplayError(true);

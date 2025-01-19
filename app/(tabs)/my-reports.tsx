@@ -21,13 +21,13 @@ import Svg, { Path } from "react-native-svg";
 import ReportCard from "@/src/components/ReportCard";
 import { Report } from "@/src/interfaces/Report";
 import { mockReports } from "@/src/mockData/reports"; // Import mock data
+import { createContext, useContext } from "react";
+import { UserContext } from "../context/UserContext";
 
 export default function MyReportsScreen() {
-  const [login, setLogin] = useState("");
-  const [password, setPassword] = useState("");
-  const [email, setEmail] = useState(""); // Added state for email
   const [reports, setReports] = useState<Report[]>(mockReports); // Use mock data
   const router = useRouter();
+  const userId = useContext(UserContext).userId; // Use UserContext
 
   return (
     <View
