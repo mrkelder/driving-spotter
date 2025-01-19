@@ -1,13 +1,21 @@
 import React from "react";
-import { TextInput, StyleSheet, View, TextInputProps } from "react-native";
+import {
+  TextInput,
+  StyleSheet,
+  View,
+  Text,
+  TextInputProps,
+} from "react-native";
 
 interface InputProps extends TextInputProps {
+  label: string;
   placeholder: string;
   value: string;
   onChangeText: (text: string) => void;
 }
 
 const Input: React.FC<InputProps> = ({
+  label,
   placeholder,
   value,
   onChangeText,
@@ -15,6 +23,7 @@ const Input: React.FC<InputProps> = ({
 }) => {
   return (
     <View style={styles.container}>
+      <Text style={styles.label}>{label}</Text>
       <TextInput
         style={styles.input}
         placeholder={placeholder}
@@ -29,6 +38,11 @@ const Input: React.FC<InputProps> = ({
 const styles = StyleSheet.create({
   container: {
     margin: 10,
+  },
+  label: {
+    marginBottom: 5,
+    fontSize: 16,
+    color: "#333",
   },
   input: {
     height: 40,
