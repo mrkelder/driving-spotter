@@ -15,7 +15,14 @@ const ReportCard: React.FC<ReportCardProps> = ({ report }) => {
           Number Plate: {report.licensePlateText}
         </Text>
         <Text style={styles.status}>Status: {report.violationDescription}</Text>
-        <Text style={styles.date}>Date: {report.datetime}</Text>
+        <Text style={styles.date}>
+          Date:
+          {new Date(report.datetime).toLocaleDateString("en-GB", {
+            day: "2-digit",
+            month: "short",
+            year: "numeric",
+          })}
+        </Text>
         <Text style={styles.location}>Location: {report.location}</Text>
       </View>
     </View>
