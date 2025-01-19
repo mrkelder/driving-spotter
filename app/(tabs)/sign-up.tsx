@@ -9,7 +9,7 @@ import Input from "@/components/Input";
 import RippleButton from "@/components/RippleButton";
 import { Link, useRouter } from "expo-router";
 
-export default function LoginScreen() {
+export default function SignUpScreen() {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
