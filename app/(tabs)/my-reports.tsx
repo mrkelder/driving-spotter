@@ -1,5 +1,12 @@
 import { useState } from "react";
-import { StyleSheet, Platform, View, Text, TextInput } from "react-native";
+import {
+  StyleSheet,
+  Platform,
+  View,
+  Text,
+  TextInput,
+  FlatList,
+} from "react-native";
 import { Image } from "expo-image";
 import { HelloWave } from "@/components/HelloWave";
 import ParallaxScrollView from "@/components/ParallaxScrollView";
