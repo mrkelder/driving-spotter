@@ -63,6 +63,7 @@ export default function MyReportsScreen() {
             alignItems: "center",
             justifyContent: "center",
           }}
+          onPress={() => router.push("/report")} // Add onPress event
         >
           <Svg width="24" height="24" viewBox="0 0 24 24" fill="none">
             <Path
