@@ -12,11 +12,12 @@ import { Link, useRouter } from "expo-router";
 export default function LoginScreen() {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-  const [firstName, setFirstName] = useState(""); // Added state for first name
-  const [lastName, setLastName] = useState(""); // Added state for last name
-  const [driversLicense, setDriversLicense] = useState(""); // Added state for driver's license
-  const [homeAddress, setHomeAddress] = useState(""); // Added state for home address
-  const [phoneNumber, setPhoneNumber] = useState(""); // Added state for phone number
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [driversLicense, setDriversLicense] = useState("");
+  const [homeAddress, setHomeAddress] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [step, setStep] = useState(1);
   const router = useRouter();
 
   return (
@@ -35,55 +36,50 @@ export default function LoginScreen() {
         style={{ width: 200, height: 120, resizeMode: "contain" }}
       />
 
-      <View style={styles.inputContainer}>
-        <Input
-          label="First Name"
-          value={firstName}
-          onChangeText={setFirstName} // Added first name input
-        />
-      </View>
-      <View style={styles.inputContainer}>
-        <Input
-          label="Last Name"
-          value={lastName}
-          onChangeText={setLastName} // Added last name input
-        />
-      </View>
-      <View style={styles.inputContainer}>
-        <Input
-          label="Driver's License"
-          value={driversLicense}
-          onChangeText={setDriversLicense} // Added driver's license input
-        />
-      </View>
-      <View style={styles.inputContainer}>
-        <Input
-          label="Home Address"
-          value={homeAddress}
-          onChangeText={setHomeAddress} // Added home address input
-        />
-      </View>
-      <View style={styles.inputContainer}>
-        <Input
-          label="Phone Number"
-          value={phoneNumber}
-          onChangeText={setPhoneNumber} // Added phone number input
-        />
-      </View>
-      <View style={styles.inputContainer}>
-        <Input label="Email" value={email} onChangeText={setEmail} />
-      </View>
-      <View style={styles.inputContainer}>
-        <Input
-          label="Password"
-          value={password}
-          onChangeText={setPassword}
-          secureTextEntry
-        />
-      </View>
+      {step === 1 && (
+        <View style={styles.inputContainer}>
+          <Input label="Email" value={email} onChangeText={setEmail} />
+          <Input
+            label="Password"
+            value={password}
+            onChangeText={setPassword}
+            secureTextEntry
+          />
+          <RippleButton title="Next" onPress={() => setStep(2)} />
+        </View>
+      )}
 
-      <RippleButton title="Sign In" onPress={() => {}} />
-      <Link style={{ marginTop: 24 }} href="/">
+      {step === 2 && (
+        <View style={styles.inputContainer}>
+          <Input
+            label="First Name"
+            value={firstName}
+            onChangeText={setFirstName}
+          />
+          <Input
+            label="Last Name"
+            value={lastName}
+            onChangeText={setLastName}
+          />
+          <Input
+            label="Driver's License"
+            value={driversLicense}
+            onChangeText={setDriversLicense}
+          />
+          <Input
+            label="Home Address"
+            value={homeAddress}
+            onChangeText={setHomeAddress}
+          />
+          <Input
+            label="Phone Number"
+            value={phoneNumber}
+            onChangeText={setPhoneNumber}
+          />
+          <RippleButton title="Sign In" onPress={() => {}} />
+        </View>
+      )}
+      <Link href="/">
         Do you have an account already? Click here to sign in
       </Link>
     </View>
@@ -94,6 +90,7 @@ const styles = StyleSheet.create({
   inputContainer: {
     width: "80%",
     maxWidth: 300,
+    gap: 8,
   },
   titleContainer: {
     flexDirection: "row",
